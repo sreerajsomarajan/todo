@@ -8,6 +8,9 @@ module Apis
     class EventsController < BaseApisController
       before_filter :find_event, only: [:show, :update, :destroy]
 
+      MSG = YAML.load_file(GlobalConstants::MSG_PATH + 'events.yml')
+                .deep_symbolize_keys
+
       # List all the events
       # GET /apis/events
       def index
@@ -19,7 +22,7 @@ module Apis
       def create
         event = Event.new(event_params)
         if event.save
-          msg = 'Event has successfully created.'
+          msg = MSG[:create][:success]
         else
           @success = false
           msg = event.errors.full_messages
@@ -31,7 +34,7 @@ module Apis
       # PUT /apis/events/:id
       def update
         if @event.update(event_params)
-          msg = 'Event has successfully updated.'
+          msg = MSG[:update][:success]
         else
           @success = false
           msg = @event.errors.full_messages
@@ -49,7 +52,7 @@ module Apis
       # DELETE /apis/events/:id
       def destroy
         if @event.destroy
-          msg = 'Event has successfully deleted.'
+          msg = MSG[:destroy][:success]
         else
           @success = false
           msg = @event.errors.full_messages

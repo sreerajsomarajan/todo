@@ -15,19 +15,19 @@ class ApisController < ApplicationController
 
   private
 
-  # Method to handle record not found errors.
-  def record_not_found(error)
-    render json: {
-      success: false,
-      message: error.message
-    }, status: :record_not_found
-  end
-
   # Method to handle generic exceptions.
   def generic_exception(error)
     render json: {
       success: false,
       message: error.message
     }, status: :internal_server_error
+  end
+
+  # Method to handle record not found errors.
+  def record_not_found(error)
+    render json: {
+      success: false,
+      message: error.message
+    }, status: :record_not_found
   end
 end

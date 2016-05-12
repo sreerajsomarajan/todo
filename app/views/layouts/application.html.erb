@@ -1,14 +1,32 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Todo</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<html ng-app="todoApp">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/todo/lib/toastr/toastr.css">
+    <%= csrf_meta_tags %>
+  </head>
+  <body ng-controller="mainCtrl" data-ng-init="init()">
 
-<%= yield %>
-
-</body>
+    <script type="text/javascript" src="/todo/lib/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/todo/lib/angular/angular.min.js"></script>
+    <script type="text/javascript" src="/todo/lib/angular/angular-route.js"></script>
+    <script type="text/javascript" src="/todo/lib/underscore/underscore.js"></script>
+    <script type="text/javascript" src="/todo/lib/toastr/toastr.min.js"></script>
+    <%= yield %>
+    <div id="header"></div>
+    <div id="main-body"></div>
+    <div id="footer">
+  </body>
 </html>
+
+<script type="text/ng-template" id="top-header">
+  <div class="wrap-header">
+    This is header
+  </div>
+</script>
+<script type="text/ng-template" id="bottom-footer">
+  <div class="wrap-footer">
+    This is footer
+  </div>
+</script>

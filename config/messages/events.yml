@@ -1,0 +1,6 @@
+create:
+  success: Event has successfully created.
+update:
+  success: Event has successfully updated.
+destroy:
+  success: Event has successfully deleted.

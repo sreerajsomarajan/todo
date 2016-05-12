@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  # root 'welcome#index'
+  root 'home#index'
 
   namespace :apis, defaults: { format: :json } do
-    scope module: :v1 do
+    namespace :v1 do
       # Routes for events controller
       resources :events do
       end
