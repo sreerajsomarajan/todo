@@ -1,6 +1,10 @@
+index:
+  success: List of all the events.
 create:
   success: Event has successfully created.
 update:
   success: Event has successfully updated.
+show:
+  success: Details of a single event.
 destroy:
   success: Event has successfully deleted.

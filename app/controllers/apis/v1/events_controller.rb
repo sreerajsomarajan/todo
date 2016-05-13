@@ -14,7 +14,8 @@ module Apis
       # List all the events
       # GET /apis/events
       def index
-        render json: Event.all
+        msg = MSG[:index][:success]
+        common_response(msg, events: Event.all)
       end
 
       # Add a new event
@@ -45,7 +46,8 @@ module Apis
       # Get an event
       # GET /apis/events/:id
       def show
-        render json: { event: @event }
+        msg = MSG[:show][:success]
+        common_response(msg, event: @event)
       end
 
       # Delete an event
