@@ -3,8 +3,19 @@
 
 <script type="text/ng-template" id="main-panel">
   <div class="wrap-body">
-    <ul ng-repeat="event in records.events">
-      <li>{{event.name}}</li>
-    </ul>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Location</th>
+        </tr>
+        <tr ng-repeat="event in records.events">
+          <td>{{event.name}}</td>
+          <td>{{event.description}}</td>
+          <td>{{event.location}}</td>
+        </tr>
+      </table>
+    </div>
   </div>
 </script>
