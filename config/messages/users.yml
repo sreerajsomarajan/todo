@@ -1,0 +1,10 @@
+index:
+  success: List of all the users.
+create:
+  success: User has successfully created.
+update:
+  success: User has successfully updated.
+show:
+  success: Details of a single user.
+destroy:
+  success: User has successfully deleted.

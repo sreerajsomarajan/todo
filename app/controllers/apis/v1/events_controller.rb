@@ -11,14 +11,14 @@ module Apis
       MSG = YAML.load_file(GlobalConstants::MSG_PATH + 'events.yml')
                 .deep_symbolize_keys
 
-      # List all the events
+      # List all the events.
       # GET /apis/events
       def index
         msg = MSG[:index][:success]
         common_response(msg, events: Event.all)
       end
 
-      # Add a new event
+      # Create a new event.
       # POST /apis/events
       def create
         event = Event.new(event_params)
@@ -31,7 +31,7 @@ module Apis
         common_response(msg, event: event)
       end
 
-      # Update an event
+      # Update an event.
       # PUT /apis/events/:id
       def update
         if @event.update(event_params)
@@ -43,14 +43,14 @@ module Apis
         common_response(msg, event: @event)
       end
 
-      # Get an event
+      # Details of a single event.
       # GET /apis/events/:id
       def show
         msg = MSG[:show][:success]
         common_response(msg, event: @event)
       end
 
-      # Delete an event
+      # Method to delete an event.
       # DELETE /apis/events/:id
       def destroy
         if @event.destroy
@@ -64,10 +64,12 @@ module Apis
 
       private
 
+      # Common method to find an event.
       def find_event
         @event = Event.find(params[:id])
       end
 
+      # Strong parameters for an event.
       def event_params
         params.require(:events)
               .permit(:name, :description, :location)

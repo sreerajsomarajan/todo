@@ -1,0 +1,4 @@
+login:
+  success: Signed in successfully.
+logout:
+  success: Signed out successfully.
