@@ -2,3 +2,6 @@ login:
   success: Signed in successfully.
 logout:
   success: Signed out successfully.
+inactive: Inactive account.
+failure: Invalid login credentials.
+logged_in: Logged in user.

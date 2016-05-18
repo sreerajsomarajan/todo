@@ -1,21 +1,25 @@
-<script type="text/javascript" src="/todo/events/controllers/main.js"></script>
+<script type="text/javascript" src="/todo/events/controllers/eventsCtrl.js"></script>
 <script type="text/javascript" src="/todo/shared/services/eventService.js"></script>
 
-<script type="text/ng-template" id="main-panel">
-  <div class="wrap-body">
-    <div class="table-responsive">
-      <table class="table table-striped">
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Location</th>
-        </tr>
-        <tr ng-repeat="event in records.events">
-          <td>{{event.name}}</td>
-          <td>{{event.description}}</td>
-          <td>{{event.location}}</td>
-        </tr>
-      </table>
+<div ng-controller="eventsCtrl" data-ng-init="init()">
+  <script type="text/ng-template" id="main-panel">
+    <div class="wrap-body">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Location</th>
+          </tr>
+          <tr ng-repeat="event in records.events">
+            <td>{{event.name}}</td>
+            <td>{{event.description}}</td>
+            <td>{{event.location}}</td>
+          </tr>
+        </table>
+      </div>
     </div>
-  </div>
-</script>
+  </script>
+</div>
+
+

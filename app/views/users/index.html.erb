@@ -1,0 +1,23 @@
+<script type="text/javascript" src="/todo/users/controllers/usersCtrl.js"></script>
+<script type="text/javascript" src="/todo/shared/services/userService.js"></script>
+
+<div ng-controller="usersCtrl" data-ng-init="init()"></div>
+
+<script type="text/ng-template" id="userIndex">
+  <div class="wrap-body" ng-controller="usersCtrl">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+        </tr>
+        <tr ng-repeat="user in records.users">
+          <td>{{user.first_name}}</td>
+          <td>{{user.last_name}}</td>
+          <td>{{user.email}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</script>

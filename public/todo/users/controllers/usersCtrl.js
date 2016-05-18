@@ -1,17 +1,19 @@
 var app = angular.module('todoApp', []);
 
-app.controller('mainCtrl', ['$scope', '$http', '$templateCache', '$compile', 'eventService', function($scope, $http, $templateCache, $compile, eventService) {
+app.controller('usersCtrl', ['$scope', '$http', '$templateCache', '$compile', 'userService', function($scope, $http, $templateCache, $compile, userService) {
   $scope.init = function() {
     var templateIds = [
       { tmpId: 'top-header', htmlId: 'header' },
-      { tmpId: 'main-panel', htmlId: 'main-body' },
+      { tmpId: 'userIndex', htmlId: 'main-body' },
       { tmpId: 'bottom-footer', htmlId: 'footer' },
     ]
     $scope.compileAndAppend(templateIds);
-    eventService.allEvents($scope.populateEvents);
+    userService.allUsers($scope.populateUsers);
   };
 
-  $scope.populateEvents = function(data) {
+
+
+  $scope.populateUsers = function(data) {
     $scope.records = data;
   };
 

@@ -6,8 +6,7 @@ module Apis
     # @author [sreeraj s]
     #
     class SessionsController < Devise::SessionsController
-      protect_from_forgery with: :null_session,
-                             if: proc { |c| c.request.format == API_FIRST_VERSION }
+      protect_from_forgery with: :null_session, if: valid_request?
 
       skip_before_action :ensure_login, only: [:create, :destroy]
 
@@ -18,21 +17,14 @@ module Apis
       # POST /api/login
       # Params: email, password
       def create
-        resource = warden.authenticate!(
+        user = warden.authenticate!(
           scope: resource_name,
           recall: "#{controller_path}#failure"
         )
-        if resource
-          return sign_in_and_redirect(resource_name, resource)
-        else
-          sign_out
-          @success = false
-          msg =
-          render json: {
-            success: false,
-            message: t('devise.sessions.inactive_account')
-          }, status: :unprocessable_entity
-        end
+        sign_in_and_redirect(resource_name, user) if user
+        sign_out
+        @success = false
+        common_response(MSG[:inactive], status: :unprocessable_entity)
       end
 
       # Sign out
@@ -43,20 +35,17 @@ module Apis
           recall: "#{controller_path}#failure"
         )
         sign_out
-        render json: {
-          success: true,
-          message: t('devise.sessions.signed_out'),
+        opt = {
           csrfParam: request_forgery_protection_token,
           csrfToken: form_authenticity_token
-        }, status: :ok
+        }
+        common_response(MSG[:logout][:success], opt)
       end
 
       # Failure
       def failure
-        render json: {
-          success: false,
-          message: 'Invalid login credentials'
-        }, status: :internal_server_error
+        @success = false
+        common_response(MSG[:failure], status: :internal_server_error)
       end
 
       # Logged in user
@@ -66,11 +55,7 @@ module Apis
           scope: resource_name,
           recall: "#{controller_path}#failure"
         )
-        render json: {
-          success: true,
-          message: 'Logged in user',
-          user: current_user
-        }, status: :ok
+        common_response(MSG[:logged_in], user: current_user)
       end
 
       # To handle signin and redirection.
@@ -78,15 +63,18 @@ module Apis
         scope = Devise::Mapping.find_scope!(resource_or_scope)
         resource ||= resource_or_scope
         sign_in(scope, resource) unless warden.user(scope) == resource
-        render json: {
-          success: true,
+        opt = {
           redirect_to: after_sign_in_path_for(:resource),
-          message: t('devise.sessions.signed_in'),
           user: current_user
-        }, status: :ok
+        }
+        common_response(MSG[:login][:success], opt)
       end
 
       private
+
+      def valid_request?
+        Proc.new { |c| c.request.format == API_FIRST_VERSION }
+      end
 
       def after_sign_in_path_for(resource)
         request.env['omniauth.origin'] ||

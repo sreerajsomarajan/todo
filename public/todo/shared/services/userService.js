@@ -4,14 +4,14 @@ var headers = {
   'Accept': 'application/todoApp.v1'
 };
 
-app.service('eventService', ["$http", "$q", "$window", function($http, $q, $window) {
+app.service('userService', ["$http", "$q", "$window", function($http, $q, $window) {
   return ({
-    allEvents: allEvents
+    allUsers: allUsers
   });
 
-  function allEvents(cb) {
+  function allUsers(cb) {
     var config = { headers: headers };
-    $http.get('/apis/events.json', config).
+    $http.get('/apis/users.json', config).
           success(function(data, status, headers, config) {
             if(cb) { cb(data); }
           }).

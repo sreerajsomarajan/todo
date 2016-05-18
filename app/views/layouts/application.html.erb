@@ -20,13 +20,14 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body ng-controller="mainCtrl" data-ng-init="init()" >
+  <body>
     <script type="text/javascript" src="/todo/lib/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/todo/lib/angular/angular.min.js"></script>
     <script type="text/javascript" src="/todo/lib/angular/angular-route.js"></script>
     <script type="text/javascript" src="/todo/lib/underscore/underscore.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/todo/lib/toastr/toastr.min.js"></script>
+    <script type="text/javascript" src="/todo/shared/app.js"></script>
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -40,7 +41,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
+            <li><a href="/users">Dashboard</a></li>
             <li><a href="#">Settings</a></li>
             <li><a href="#">Profile</a></li>
             <li><a href="#">Help</a></li>
