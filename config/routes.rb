@@ -2,6 +2,7 @@ require 'api_constraints'
 
 Rails.application.routes.draw do
   devise_for :users
+
   root 'events#index'
 
   namespace :apis, defaults: { format: :json } do
