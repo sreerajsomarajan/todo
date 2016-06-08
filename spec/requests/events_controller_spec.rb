@@ -7,6 +7,13 @@ require 'rails_helper'
 
 RSpec.describe 'Events', type: :request do
   let!(:event) { FactoryGirl.create(:event) }
+  let(:event_params) do
+    {
+      name: 'Test Event 2',
+      description: 'Test Event 2 Description',
+      location: 'Kollam'
+    }
+  end
 
   it 'list all events' do
     get '/apis/events.json',
@@ -56,13 +63,5 @@ RSpec.describe 'Events', type: :request do
            Accept: 'application/todoApp.v1'
     resp = JSON.parse(response.body)
     expect(resp['message'].first).to eq('Event has successfully deleted.')
-  end
-
-  def event_params
-    {
-      name: 'Test Event 2',
-      description: 'Test Event 2 Description',
-      location: 'Kollam'
-    }
   end
 end

@@ -45,6 +45,10 @@ group :development, :test do
 
   gem 'rspec-rails'
   gem 'factory_girl_rails', '~> 4.0'
+  gem 'capybara'
+  gem 'capybara-screenshot'
+  gem 'selenium-webdriver'
+  gem 'database_cleaner'
 end
 gem 'responders'
 
