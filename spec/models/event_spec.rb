@@ -11,7 +11,8 @@ describe Event do
       it 'should not create the records' do
         Event.create(name: 'Testing_2')
         event = Event.create(name: 'Testing_2')
-        expect(event.errors.full_messages.first).to match /Name has already been taken/i
+        first_error = event.errors.full_messages.first
+        expect(first_error).to match(/Name has already been taken/i)
       end
     end
   end
